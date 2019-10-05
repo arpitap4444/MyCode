@@ -1,0 +1,81 @@
+clear()
+clearOutput()
+drawStage(black)
+
+//> cb: edu.umd.cs.piccolo.util.PBounds = PBounds[x=-467.5,y=-334.5,width=935.0,height=669.0]
+class Rocket {
+    val a = -7
+    val finalvel = Vector2D(0, a)
+    var vel = Vector2D(0, 0)
+    val cb = canvasBounds
+    val x = cb.x + 467.5 - 25
+    val y = cb.y + 334.5 + 200
+    val lander = Picture.rectangle(50, 70)
+    val thuster = Picture.rectangle(20, 50)
+    lander.setFillColor(red)
+    thuster.setFillColor(yellow)
+    lander.setPosition(x, y)
+    thuster.setPosition(x + 15, y - 35)
+
+    val gravity = Vector2D(0, -0.3)
+
+    def draw() {
+        lander.draw
+        thuster.draw
+    }
+    def step() {
+        vel = vel + gravity
+        lander.translate(vel)
+        thuster.translate(vel)
+        thuster.invisible()
+        
+        if (lander.collidesWith(m.moon)) {
+            thuster.invisible()
+            if (r.vel.y<=r.a) {
+        print("You Lose!")
+         }
+            else{
+                print("You Win!")
+            }
+          stopAnimation()
+            activateEditor()
+        }
+        
+        if (lander.collidesWith(stageTop)) {
+            vel = bouncePicVectorOffStage(lander, vel)
+            
+            vel = vel * 5
+            
+            
+        }
+        if (isKeyPressed(Kc.VK_UP)) {
+            vel = Vector2D(0, 1)
+            vel = vel * 4
+            thuster.visible()
+        }
+    }
+} //> defined class Rocket
+class Moon {
+    val moon = Picture {
+        left(180, 250)
+    }
+
+    moon.setFillColor(ColorMaker.dimGrey)
+    moon.setPenColor(ColorMaker.dimGrey)
+    moon.setPosition(r.cb.x + 350 * 2 + 25, r.cb.y)
+
+    def draw1() {
+        moon.draw
+    }
+} //> defined class Moon
+
+val r = new Rocket //> r: Rocket = Rocket@13e43fe
+val m = new Moon //> m: Moon = Moon@5785c6
+r.draw
+m.draw1
+
+animate {
+    r.step
+} //> res690: java.util.concurrent.Future[edu.umd.cs.piccolo.activities.PActivity] = net.kogics.kojo.util.FutureResult@cc60b
+activateCanvas()
+//> res443: Double = 0.0
