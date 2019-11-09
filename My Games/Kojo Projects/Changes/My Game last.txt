@@ -3,11 +3,13 @@ class Board {
     clearOutput()
     drawStage(black)
     val cb = canvasBounds
-    val board = Picture.image("C:/Users/win-10/Desktop/board.png")
-    val a = Picture.image("C:/Users/win-10/Desktop/x.png")
-    val o = Picture.image("C:/Users/win-10/Desktop/o.png")
+    val board = Picture.image("C:/Users/mother miracle/Desktop/My Games/Kojo Projects/Game Files/board.png")
+    val x = Picture.image("C:/Users/mother miracle/Desktop/My Games/Kojo Projects/Game Files/x.png")
+    val o = Picture.image("C:/Users/mother miracle/Desktop/My Games/Kojo Projects/Game Files/o.png")
+
+    //Maming button as picture
     val button0 = Picture {
-        setFillColor(cm.rgb(0, 191, 255))
+        setFillColor(ColorMaker.hsla(195, 1.00, 0.50, 0.00))
         setPenColor(cm.rgb(0, 191, 255))
         hop(18)
         forward(160)
@@ -18,19 +20,14 @@ class Board {
         right()
         forward(210)
     }
-
-    val button1 = button0.copy
-    val button2 = button0.copy
-    val button3 = button0.copy
-    val button4 = button0.copy
-    val button5 = button0.copy
-    val button6 = button0.copy
-    val button7 = button0.copy
-    val button8 = button0.copy
+    
+    //Copying one constant variable into other constant variables
+    val button1,button2,button3,button4,button5,button6,button7,button8 = button0.copy
+    
+    //setting positions
     board.setPosition(-385, -318)
-    a.setPosition(0, 0)
+    x.setPosition(0, 0)
     o.setPosition(0, 0)
-    board.scale(3, 2.5)
     button0.setPosition(-370, 125)
     button1.setPosition(-105, 125)
     button2.setPosition(155, 125)
@@ -40,8 +37,12 @@ class Board {
     button6.setPosition(-369,-315)
     button7.setPosition(-106,-315)
     button8.setPosition(156,-315)
-    a.scale(3, 2.5)
+    // Scalling
+    board.scale(3, 2.5)
+    x.scale(3, 2.5)
     o.scale(3, 2.5)
+
+    //Drawing all things
     def draw() {
         board.draw()
         button0.draw()
@@ -53,23 +54,23 @@ class Board {
         button6.draw()
         button7.draw()
         button8.draw()
+       
     }
 
 
-
+    def mouse_click(){
     button0.onMouseClick { (x,y) =>
         button0.invisible()
-        a.moveToFront()
+        b.x.draw()
+        b.x.moveToFront()
         
         }
-        a.setPosition(-360,140)
-        // note `newPic` will be drawn over `pic`. So mouse clicks 
-        // within the bounds of `newPic` will not reach `pic`
+        x.setPosition(-360,140)
         
 
-
+    }
 
 }
 val b = new Board
 b.draw()
-b.a.draw()
+b.mouse_click()
