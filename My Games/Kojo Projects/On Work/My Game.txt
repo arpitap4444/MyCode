@@ -22,7 +22,7 @@ class Board {
         right()
         forward(210)
     }
-      
+
     //Copying one constant variable into other constant variables
     val button1, button2, button3, button4, button5, button6, button7, button8 = button0.copy
     val x1, x2, x3, x4, x5, x6, x7, x8 = x.copy
@@ -76,154 +76,164 @@ class Board {
     }
 
     def mouse_click() {
-        if (change == true) {
 
-            button0.onMouseClick { (x, y) =>
+        button0.onMouseClick { (x, y) =>
+            if (change == true) {
                 button0.invisible()
                 b.x.setPosition(-360, 140)
                 b.x.draw()
                 change = false
-
             }
 
-            button1.onMouseClick { (x, y) =>
+            else {
+                button0.invisible()
+                b.o.setPosition(-360, 140)
+                b.o.draw()
+                b.o.moveToFront()
+                change = true
+            }
+        }
+
+        button1.onMouseClick { (x, y) =>
+            if (change == true) {
                 button1.invisible()
                 b.x1.draw()
                 b.x1.setPosition(-90, 150)
                 change = false
             }
 
-            button2.onMouseClick { (x, y) =>
-                button2.invisible()
-                b.x2.draw()
-                b.x2.setPosition(155, 150)
-                change = false
-            }
-
-            button3.onMouseClick { (x, y) =>
-                button3.invisible()
-                b.x3.draw()
-                b.x3.setPosition(-365, -59)
-                change = false
-            }
-
-            button4.onMouseClick { (x, y) =>
-                button4.invisible()
-                b.x4.draw()
-                b.x4.setPosition(-106, -59)
-                change = false
-            }
-
-            button5.onMouseClick { (x, y) =>
-                button5.invisible()
-                b.x5.draw()
-                b.x5.setPosition(156, -59)
-                change = false
-            }
-
-            button6.onMouseClick { (x, y) =>
-                button6.invisible()
-                b.x6.draw()
-                b.x6.setPosition(-360, -300)
-                change = false
-            }
-
-            button7.onMouseClick { (x, y) =>
-                button7.invisible()
-                b.x7.draw()
-                b.x7.setPosition(-106, -300)
-                change = false
-            }
-
-            button8.onMouseClick { (x, y) =>
-                button8.invisible()
-                b.x8.draw()
-                b.x8.setPosition(156, -300)
-                change = false
-            }
-        }
-
-        
-//-----------------------------------------------------------------------------------
-
-
-
-        if(change == false) {
-
-            button0.onMouseClick { (x, y) =>
-                button0.invisible()
-                b.o.setPosition(-360, 140)
-                b.o.draw()
-                b.o.moveToFront()
-                change = true
-
-            }
-
-            button1.onMouseClick { (x, y) =>
+            else {
                 button1.invisible()
                 b.o1.draw()
                 b.o1.setPosition(-90, 150)
                 b.o1.moveToFront()
                 change = true
             }
+        }
 
-            button2.onMouseClick { (x, y) =>
+        button2.onMouseClick { (x, y) =>
+            if (change == true) {
+                button2.invisible()
+                b.x2.draw()
+                b.x2.setPosition(155, 150)
+                change = false
+            }
+
+            else {
                 button2.invisible()
                 b.o2.draw()
                 b.o2.setPosition(155, 150)
                 b.o2.moveToFront()
                 change = true
+
+            }
+        }
+
+        button3.onMouseClick { (x, y) =>
+            if (change == true) {
+                button3.invisible()
+                b.x3.draw()
+                b.x3.setPosition(-365, -59)
+                change = false
             }
 
-            button3.onMouseClick { (x, y) =>
+            else {
                 button3.invisible()
                 b.o3.draw()
                 b.o3.setPosition(-365, -59)
                 b.o3.moveToFront()
                 change = true
+
+            }
+        }
+
+        button4.onMouseClick { (x, y) =>
+            if (change == true) {
+                button4.invisible()
+                b.x4.draw()
+                b.x4.setPosition(-106, -59)
+                change = false
             }
 
-            button4.onMouseClick { (x, y) =>
+            else {
                 button4.invisible()
                 b.o4.draw()
                 b.o4.setPosition(-106, -59)
                 b.o4.moveToFront()
                 change = true
-            }
 
-            button5.onMouseClick { (x, y) =>
+            }
+        }
+
+        button5.onMouseClick { (x, y) =>
+            if (change == true) {
+                button5.invisible()
+                b.x5.draw()
+                b.x5.setPosition(156, -59)
+                change = false
+            }
+            else {
                 button5.invisible()
                 b.o5.draw()
                 b.o5.setPosition(156, -59)
                 b.o5.moveToFront()
                 change = true
+
+            }
+        }
+
+        button6.onMouseClick { (x, y) =>
+            if (change == true) {
+                button6.invisible()
+                b.x6.draw()
+                b.x6.setPosition(-360, -300)
+                change = false
             }
 
-            button6.onMouseClick { (x, y) =>
+            else {
                 button6.invisible()
                 b.o6.draw()
                 b.o6.setPosition(-360, -300)
                 b.o6.moveToFront()
                 change = true
-            }
 
-            button7.onMouseClick { (x, y) =>
+            }
+        }
+
+        button7.onMouseClick { (x, y) =>
+            if (change == true) {
+                button7.invisible()
+                b.x7.draw()
+                b.x7.setPosition(-106, -300)
+                change = false
+            }
+            else {
                 button7.invisible()
                 b.o7.draw()
                 b.o7.setPosition(-106, -300)
                 b.o7.moveToFront()
                 change = true
-            }
 
-            button8.onMouseClick { (x, y) =>
+            }
+        }
+
+        button8.onMouseClick { (x, y) =>
+            if (change == true) {
+                button8.invisible()
+                b.x8.draw()
+                b.x8.setPosition(156, -300)
+                change = false
+            }
+            else {
                 button8.invisible()
                 b.o8.draw()
                 b.o8.setPosition(156, -300)
                 b.o8.moveToFront()
                 change = true
+
             }
-            
         }
+
     }
 }
 //checks if the block is empty or not
