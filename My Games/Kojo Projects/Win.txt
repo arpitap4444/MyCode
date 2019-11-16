@@ -1,0 +1,15 @@
+val data = ArrayBuffer(0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+def winX() = {
+    val c1 = if (data(0) == 1 &&
+        data(4) == 1 &&
+        data(8) == 1)
+        true
+
+    val c2 = if (data(0) == 1 &&
+        data(3) == 1 &&
+        data(6) == 1)
+        true
+// || this sign represents ("OR") 
+    c1 || c2
+}
