@@ -253,102 +253,89 @@ class Board {
 
     }
 
-    def winX() = {
-        val c1 = if (data(0) == 1 &&
+    def winX = {
+        val c1 = (data(0) == 1 &&
             data(4) == 1 &&
             data(8) == 1)
-            true
 
-        val c2 = if (data(6) == 1 &&
+        val c2 = (data(6) == 1 &&
             data(4) == 1 &&
             data(2) == 1)
-            true
 
-        val c3 = if (data(0) == 1 &&
+        val c3 = (data(0) == 1 &&
             data(3) == 1 &&
             data(6) == 1)
-            true
 
-        val c4 = if (data(1) == 1 &&
+        val c4 = (data(1) == 1 &&
             data(4) == 1 &&
             data(7) == 1)
-            true
 
-        val c5 = if (data(2) == 1 &&
+        val c5 = (data(2) == 1 &&
             data(5) == 1 &&
             data(8) == 1)
-            true
 
-        val c6 = if (data(0) == 1 &&
+        val c6 = (data(0) == 1 &&
             data(1) == 1 &&
             data(2) == 1)
-            true
 
-        val c7 = if (data(3) == 1 &&
+        val c7 = (data(3) == 1 &&
             data(4) == 1 &&
             data(5) == 1)
-            true
 
-        val c8 = if (data(6) == 1 &&
+        val c8 = (data(6) == 1 &&
             data(7) == 1 &&
             data(8) == 1)
-            true
+
+        c1 || c2 || c3 || c4 || c5 || c6 || c7 || c8
 
     }
 
-    def winO() = {
-        val c_1 = if (data(0) == 2 &&
+    def winO = {
+        val c_1 = (data(0) == 2 &&
             data(4) == 2 &&
             data(8) == 2)
-            true
 
-        val c_2 = if (data(6) == 2 &&
+        val c_2 = (data(6) == 2 &&
             data(4) == 2 &&
             data(2) == 2)
-            true
 
-        val c_3 = if (data(0) == 2 &&
+        val c_3 = (data(0) == 2 &&
             data(3) == 2 &&
             data(6) == 2)
-            true
 
-        val c_4 = if (data(1) == 2 &&
+        val c_4 = (data(1) == 2 &&
             data(4) == 2 &&
             data(7) == 2)
-            true
 
-        val c_5 = if (data(2) == 2 &&
+        val c_5 = (data(2) == 2 &&
             data(5) == 2 &&
             data(8) == 2)
-            true
 
-        val c_6 = if (data(0) == 2 &&
+        val c_6 = (data(0) == 2 &&
             data(1) == 2 &&
             data(2) == 2)
-            true
 
-        val c_7 = if (data(3) == 2 &&
+        val c_7 = (data(3) == 2 &&
             data(4) == 2 &&
             data(5) == 2)
-            true
 
-        val c_8 = if (data(6) == 2 &&
+        val c_8 = (data(6) == 2 &&
             data(7) == 2 &&
             data(8) == 2)
-            true
+
+        c_1 || c_2 || c_3 || c_4 || c_5 || c_6 || c_7 || c_8
     }
 
     def check_win() {
-        if (c1 || c2 || c3 || c4 || c5 || c6 || c7 || c8 == true) {
-
+        if (winX) {
             print("Player_X Win!")
-
         }
-        else if (c_1 || c_2 || c_3 || c_4 || c_5 || c_6 || c_7 || c_8 == true){
+        else if (winO) {
+
             print("Player_O win!")
         }
 
-        else{
+        else {
             print("Draw!")
         }
 
@@ -359,4 +346,4 @@ class Board {
 val b = new Board
 b.draw()
 b.mouse_click()
-
+b.check_win()
