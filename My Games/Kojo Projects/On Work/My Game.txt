@@ -7,7 +7,7 @@ class Board {
     val x = Picture.image("C:/Users/mother miracle/Desktop/My Games/Kojo Projects/Game Files/x.png")
     val o = Picture.image("C:/Users/mother miracle/Desktop/My Games/Kojo Projects/Game Files/o.png")
     var change = true
-    val data = ArrayBuffer(0, 0, 0, 0, 0, 0, 0, 0)
+    val data = ArrayBuffer(0, 0, 0, 0, 0, 0, 0, 0, 0)
 
     //Maming button as picture
     val button0 = Picture {
@@ -75,8 +75,7 @@ class Board {
 
     }
 
-    def mouse_click() {
-
+    def activateMouseHandlers() {
         button0.onMouseClick { (x, y) =>
             if (change == true) {
                 button0.invisible()
@@ -94,6 +93,7 @@ class Board {
                 change = true
                 data(0) = 2
             }
+            check_win()
         }
 
         button1.onMouseClick { (x, y) =>
@@ -113,6 +113,7 @@ class Board {
                 change = true
                 data(1) = 2
             }
+            check_win()
         }
 
         button2.onMouseClick { (x, y) =>
@@ -133,6 +134,7 @@ class Board {
                 data(2) = 2
 
             }
+            check_win()
         }
 
         button3.onMouseClick { (x, y) =>
@@ -152,6 +154,7 @@ class Board {
                 change = true
                 data(3) = 2
             }
+            check_win()
         }
 
         button4.onMouseClick { (x, y) =>
@@ -172,6 +175,7 @@ class Board {
                 data(4) = 2
 
             }
+            check_win()
         }
 
         button5.onMouseClick { (x, y) =>
@@ -191,6 +195,7 @@ class Board {
                 data(5) = 2
 
             }
+            check_win()
         }
 
         button6.onMouseClick { (x, y) =>
@@ -211,6 +216,7 @@ class Board {
                 data(6) = 2
 
             }
+            check_win()
         }
 
         button7.onMouseClick { (x, y) =>
@@ -230,6 +236,7 @@ class Board {
                 data(7) = 2
 
             }
+            check_win()
         }
 
         button8.onMouseClick { (x, y) =>
@@ -249,6 +256,8 @@ class Board {
                 data(8) = 2
 
             }
+            check_win()
+
         }
 
     }
@@ -328,15 +337,17 @@ class Board {
 
     def check_win() {
         if (winX) {
-            print("Player_X Win!")
+            drawCenteredMessage("Player X Won!", green, 100)
+            activateEditor()
         }
         else if (winO) {
 
-            print("Player_O win!")
+            drawCenteredMessage("Player O Won!", green, 100)
+            activateEditor()
         }
 
         else {
-            print("Draw!")
+
         }
 
     }
@@ -345,5 +356,4 @@ class Board {
 
 val b = new Board
 b.draw()
-b.mouse_click()
-b.check_win()
+b.activateMouseHandlers()
