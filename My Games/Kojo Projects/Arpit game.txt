@@ -1,0 +1,79 @@
+cleari()
+clearOutput()
+drawStage(black)
+//> cb: edu.umd.cs.piccolo.util.PBounds = PBounds[x=-467.5,y=-334.5,width=935.0,height=669.0]
+class Rocket {
+    val a = -7
+    val finalvel = Vector2D(0, a)
+    var vel = Vector2D(0, 0)
+    val cb = canvasBounds
+    val x = cb.x + 467.5 - 100
+    val y = cb.y + 334.5 + 100
+    val lander = Picture.image("C:/Users/mother miracle/Desktop/Arpit2.png")
+    val thuster = Picture.image("C:/Users/mother miracle/Desktop/fire.png")
+    lander.setPosition(x, y)
+    thuster.setPosition(x, y)
+    thuster.scale(1)
+
+    val gravity = Vector2D(0, -0.3)
+
+    def draw() {
+        lander.draw
+        lander.moveToFront()
+        thuster.draw
+    }
+    def step() {
+        vel = vel + gravity
+        lander.translate(vel)
+        thuster.translate(vel)
+        thuster.invisible()
+
+        if (lander.collidesWith(m.moon)) {
+            thuster.invisible()
+            if (r.vel.y <= r.a) {
+                drawCenteredMessage("You Lose!", orange, 100)
+            }
+            else {
+                drawCenteredMessage("You Win!", green, 100)
+            }
+            stopAnimation()
+            activateEditor()
+        }
+
+        if (lander.collidesWith(stageTop)) {
+            vel = bouncePicVectorOffStage(lander, vel)
+
+            vel = vel * 7
+            if (thuster.collidesWith(stageTop)) {
+                vel = bouncePicVectorOffStage(thuster, vel)
+            }
+        }
+        if (isKeyPressed(Kc.VK_UP)) {
+            vel = Vector2D(0, 1)
+            vel = vel * 4
+            thuster.visible()
+        }
+    }
+}
+class Moon {
+    val moon = Picture.image("C:/Users/mother miracle/Desktop/images (2).png")
+
+    moon.setPosition(r.cb.x + -r.cb.x / 2 + 20, r.cb.y - 210
+    )
+    moon.scale(2)
+
+    def draw1() {
+        moon.draw
+    }
+}
+
+val r = new Rocket
+val m = new Moon
+r.draw
+m.draw1
+
+animate {
+    r.step
+}
+activateCanvas()
+//> res443: Double = 0.0
