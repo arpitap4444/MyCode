@@ -1,0 +1,86 @@
+cleari()
+clearOutput()
+drawStage(black)
+setBackground(Color(200, 200, 200))
+val cb = canvasBounds
+class lander {
+    val x = cb.x / 2 + 150
+    val y = cb.y / 2 + 150
+    var velocity = Vector2D(0, 0)
+    var thrust = Vector2D(0, 0)
+    var gravity = Vector2D(0, -0.1)
+    val thuster = Picture.image("C:/Users/mother miracle/Desktop/Lander Game/Game Files/Boosters.png")
+    val rocket = Picture.image("C:/Users/mother miracle/Desktop/Lander Game/Game Files/Rocket.png")
+    rocket.setPosition(x, y)
+    thuster.setPosition(rocket.position.x + 52, rocket.position.y - 25)
+    def drawKar() {
+        rocket.draw()
+        thuster.draw()
+        thuster.invisible()
+    }
+    def step() {
+        if (isKeyPressed(Kc.VK_UP)) {
+            inThrust()
+        }
+        else {
+            noThrust()
+        }
+
+        velocity = velocity + gravity
+        velocity = velocity + thrust
+
+        rocket.translate(velocity)
+        thuster.setPosition(rocket.position.x + 52, rocket.position.y - 25)
+
+        if (rocket.collidesWith(stageBorder)) {
+            velocity = bouncePicVectorOffStage(rocket, velocity)
+        }
+    }
+
+    def inThrust() {
+        thrust = new Vector2D(0, 1)
+        thuster.visible()
+    }
+
+    def noThrust() {
+        thrust = new Vector2D(0, 0)
+        thuster.invisible()
+    }
+
+}
+
+class Moon {
+    val x = cb.x / 3 - 20
+    val y = cb.y - 190
+    val moon = Picture.image("C:/Users/mother miracle/Desktop/Lander Game/Game Files/Moon.png")
+    moon.setPosition(x, y)
+
+    def drawKar() {
+        moon.draw()
+    }
+
+    def check() {
+        if (l.rocket.collidesWith(moon)) {
+            if (l.velocity.y.abs > 3) {
+                drawCenteredMessage("You Lose", red, 50)
+                activateEditor()
+            }
+            else {
+                drawCenteredMessage("You Win", green, 50)
+                activateEditor()
+            }
+            l.thuster.visible()
+            stopAnimation()
+        }
+    }
+
+}
+val m = new Moon
+val l = new lander()
+l.drawKar()
+m.drawKar()
+animate {
+    l.step()
+    m.check()
+}
+activateCanvas()
